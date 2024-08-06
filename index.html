@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NewbieFit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-</head>
-<body>
+  </head>
+  <body>
+  <header>
+    <h1>NewbieFit</h1>
+  </header>
+  <section class="workouts">
+    <h2>What are you feeling like today?</h2>
+    <form>
+      <input type="checkbox" id="chest" name="chest">
+      <label for="chest">Chest</label>
+      <input type="checkbox" id="triceps" name="triceps">
+      <label for="triceps">Triceps</label>
+      <input type="checkbox" id="back" name="back">
+      <label for="chest">Back</label>
+      <input type="checkbox" id="biceps" name="biceps">
+      <label for="biceps">Biceps</label>
+      <input type="checkbox" id="legs" name="legs">
+      <label for="legs">Legs</label>
+      <input type="checkbox" id="core" name="core">
+      <label for="core">Core</label>
+      <input type="submit" id="biefit" value="BieFit">
+    </form>
+  </section>
 
-</body>
+  <section class="exercises">
+    <h2>Recommended Exercises</h2>
+    <article>
+      <!--The recommended exercises will go here-->
+    </article>
+    <input type="submit" id="complete" value="Complete">
+  </section>
+       
+  <section class="previousworkouts">
+       <!--The previous workouts will go here for storage-->
+  </section>
+  </body>
 </html>
