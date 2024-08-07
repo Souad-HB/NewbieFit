@@ -2,13 +2,23 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: sans, sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: var(--ash-gray);
+}
+
+body {
+    padding-top: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 :root {
     --ash-gray: #BFC3BA;
     --silver: #A9ACA9;
     --eggplant: #60495A;
+    --dark-text: #070707;
+    --light-text: #FFFFF2;
+    --black: #000;
 }
 
 /* Typography */
@@ -30,9 +40,10 @@ p {
     padding: 1em;
 }
 
-/* Forms */
-form {
-    margin: 1em 0;
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 header {
@@ -40,17 +51,33 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1em 0;
-    color: var(--eggplant);
+    background-color: var(--ash-gray);
+    color: var(--dark-text);
 }
 
+/* Checkbox Styling */
 
 input[type="checkbox"] {
-    margin-right: 0.5em;
+    margin: 3px 5px 3px 5px;
+    font: inherit;
+    cursor: pointer;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(.25em);
+    flex-direction: row;
+    flex: 0 0 100%;
 }
 
 /* Buttons */
 button {
-    background-color: #4CAF50;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--silver);
     color: white;
     padding: 0.5em 1em;
     border: none;
@@ -59,30 +86,91 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--silver);
+    color: var(--dark-text);
 }
 
-/* Pop-ups */
-.popup {
-    display: none;
+.section-head {
+    height: 57px;
+    width: 480px;
+    font-size: 150%;
+    font-weight: 800;
+    color: var(--light-text);
+    margin-top: -40px;
+    background-color: var(--eggplant);
+    border: 5px solid var(--silver);
+    border-radius: 8px;
+    justify-content: center;
+    align-content: center;
+}
+
+/* Classes */
+.workouts, .exercises, .previousworkouts {
+    width: 550px;
+    height: 270px;
+    background-color: var(--eggplant);
+    color: var(--dark-text);
+    border: 1px solid var(--silver);
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    margin: 30px; 
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.previousworkouts {
+    width: 75%;
+    margin: 30px auto;
+}
+
+/* IDs */
+
+#main-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text);
+    font-size: 150%;
+    font-weight: 800;
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--eggplant);
+    width: 100%;
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 1em;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 10px solid var(--silver);
 }
 
-.popup.active {
-    display: block;
+#form {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.1;
 }
 
-/* Local Storage Display */
-.local-storage {
-    margin-top: 2em;
-    padding: 1em;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+#check-list {
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    padding: 0px;
+    text-align: left;
+}
+
+#check-list li {
+    list-style: none;
+    width: 100%;
+}
+
+/* Screen */
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
 }

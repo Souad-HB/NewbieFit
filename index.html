@@ -4,41 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NewbieFit</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> -->
   </head>
   <body>
   <header>
-    <h1>NewbieFit</h1>
+    <div id="main-header">
+      <h1>NewbieFit</h1>
+    </div>
   </header>
-  <section class="workouts">
-    <h2>What are you feeling like today?</h2>
-    <form id="form">
-      <input type="checkbox" id="chest" name="workout" value="Chest">
-      <label for="chest">Chest</label><br>
-      <input type="checkbox" id="triceps" name="workout" value="Triceps">
-      <label for="triceps">Triceps</label><br>
-      <input type="checkbox" id="back" name="workout" value="Back">
-      <label for="chest">Back</label><br>
-      <input type="checkbox" id="biceps" name="workout" value="Biceps">
-      <label for="biceps">Biceps</label><br>
-      <input type="checkbox" id="legs" name="workout" value="Legs">
-      <label for="legs">Legs</label><br>
-      <input type="checkbox" id="core" name="workout" value="Core">
-      <label for="core">Core</label><br>
-      <input type="submit" id="biefit" value="BieFit">
-    </form>
-  </section>
-
-  <section class="exercises">
-    <h2>Recommended Exercises</h2>
-    <article>
-      <!--The recommended exercises will go here-->
-    </article>
-    <input type="submit" id="complete" value="Complete">
-  </section>
+  <div class="main-container">
+    <section class="workouts">
+      <h2 class="section-head">Select The Muscles You Want To Workout</h2>
+      <ul id="check-list">
+        <li><input type="checkbox" id="chest" name="workout" value="Chest"><label for="chest"><strong>Chest</strong></label><br></li>
+        <li><input type="checkbox" id="triceps" name="workout" value="Triceps"><label for="triceps"><strong>Triceps<strong></label><br></li>
+        <li><input type="checkbox" id="back" name="workout" value="Back"><label for="back"><strong>Back<strong></label><br></li>
+        <li><input type="checkbox" id="biceps" name="workout" value="Biceps"><label for="biceps"><strong>Biceps<strong></label><br></li>
+        <li><input type="checkbox" id="legs" name="workout" value="Legs"><label for="legs"><strong>Legs<strong></label><br></li>
+        <li><input type="checkbox" id="core" name="workout" value="Core"><label for="core"><strong>Core<strong></label><br></li>
+      </ul>
+        <button type="submit" id="biefit" value="bieFit">bieFit</button>
+    </section>
+  
+    <section class="exercises">
+      <h2 class="section-head">Recommended Exercises:</h2>
+      <ol id="recomexercises">
+        <!--The recommended exercises will go here-->
+      </ol>
+      <button type="submit" id="complete" value="Complete">Complete</button>
+    </section>
+  </div>
        
   <section class="previousworkouts">
-       <!--The previous workouts will go here for storage-->
+    <ul>
+      <!--The previous workouts will go here for storage-->
+    </ul>  
   </section>
   </body>
 </html>
