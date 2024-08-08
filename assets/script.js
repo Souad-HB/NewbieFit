@@ -4,8 +4,9 @@ const checkboxes = document.querySelectorAll('input[name="workout"]');
 const biefit = document.querySelector('#biefit');
 const recomExercises = document.querySelector('#recomexercises');
 const complete = document.querySelector('#complete');
-const previousWorkouts = document.querySelector('.previousworkouts');
+const previousWorkouts = document.querySelector('#allpreviousworkouts');
 const workoutParent = document.querySelector('#recomexercises');
+const clearWorkouts = document.querySelector('#clearworkouts')
 
 // Make the workoutsArray that holds each workout along with its exercises
 const workoutsArray = [
@@ -109,17 +110,17 @@ form.addEventListener('submit', workoutSubmitHandler);
 //-------------------------------------------------------------------------------------------------------
 //Create a function that would display the exercises from the submittedWorkouts
 function displaySubmittedWorkouts() {
-workoutParent.innerHTML = ''; // Clear previous workouts    
+    workoutParent.innerHTML = '';
+    workoutList = document.createElement('ol');
     submittedWorkouts.forEach((submittedWorkout) => {
-        const workoutList = document.createElement('ul');
-        for(let i = 0; i < submittedWorkout.exercises.length; i++){
+        submittedWorkout.exercises.forEach((exerciseText) => {
             const exercise = document.createElement('li');
-            exercise.textContent = submittedWorkout.exercises[i];
+            exercise.textContent = exerciseText;
             workoutList.appendChild(exercise);
-        }
-        workoutParent.appendChild(workoutList);
-    }); 
-}
+        })
+    workoutParent.appendChild(workoutList);
+    });
+};
 
 //Create a function that clears the submittedWorkouts'exercises
 function clearSubmittedWorkouts() {
@@ -184,8 +185,13 @@ function clearCompletedWorkouts() {
     previousWorkouts.innerHTML = '';
 }
 
+
 //clearCompletedWorkouts()
 // Call loadSubmittedWorkouts and completedworkouts when the page loads
+clearWorkouts.addEventListener('click', function(event){
+    event.preventDefault();
+    clearCompletedWorkouts();
+})
 
 //window.addEventListener('load', loadSubmittedWorkouts);
 window.addEventListener('load', loadCompletedWorkouts);
