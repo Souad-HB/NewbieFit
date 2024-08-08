@@ -6,6 +6,7 @@
     <title>NewbieFit</title>
     <link rel="stylesheet" href="assets/style.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> -->
+     <script src="assets/script.js"></script>
   </head>
   <body>
   <header>
@@ -16,15 +17,15 @@
   <div class="main-container">
     <section class="workouts">
       <h2 class="section-head">Select The Muscles You Want To Workout</h2>
-      <ul id="check-list">
-        <li><input type="checkbox" id="chest" name="workout" value="Chest"><label for="chest"><strong>Chest</strong></label><br></li>
-        <li><input type="checkbox" id="triceps" name="workout" value="Triceps"><label for="triceps"><strong>Triceps<strong></label><br></li>
-        <li><input type="checkbox" id="back" name="workout" value="Back"><label for="back"><strong>Back<strong></label><br></li>
-        <li><input type="checkbox" id="biceps" name="workout" value="Biceps"><label for="biceps"><strong>Biceps<strong></label><br></li>
-        <li><input type="checkbox" id="legs" name="workout" value="Legs"><label for="legs"><strong>Legs<strong></label><br></li>
-        <li><input type="checkbox" id="core" name="workout" value="Core"><label for="core"><strong>Core<strong></label><br></li>
-      </ul>
-        <button type="submit" id="biefit" value="bieFit">bieFit</button>
+      <form id="form">
+        <input type="checkbox" id="chest" name="workout" value="Chest"><label for="chest"><strong>Chest</strong></label><br>
+        <input type="checkbox" id="triceps" name="workout" value="Triceps"><label for="triceps"><strong>Triceps<strong></label><br>
+        <input type="checkbox" id="back" name="workout" value="Back"><label for="back"><strong>Back<strong></label><br>
+        <input type="checkbox" id="biceps" name="workout" value="Biceps"><label for="biceps"><strong>Biceps<strong></label><br>
+        <input type="checkbox" id="legs" name="workout" value="Legs"><label for="legs"><strong>Legs<strong></label><br>
+        <input type="checkbox" id="core" name="workout" value="Core"><label for="core"><strong>Core<strong></label><br>
+        <input type="submit" id="biefit" value="bieFit"></input>
+        </form>
     </section>
   
     <section class="exercises">
@@ -32,7 +33,7 @@
       <ol id="recomexercises">
         <!--The recommended exercises will go here-->
       </ol>
-      <button type="submit" id="complete" value="Complete">Complete</button>
+      <input type="submit" id="complete" value="Complete"></input>
     </section>
   </div>
        
