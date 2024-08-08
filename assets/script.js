@@ -103,7 +103,7 @@ function workoutSubmitHandler(event) {
 
 }
 
-form.addEventListener('submit', workoutSubmitHandler) 
+form.addEventListener('submit', workoutSubmitHandler);
 
 
 //-------------------------------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ form.addEventListener('submit', workoutSubmitHandler)
 function displaySubmittedWorkouts() {
 workoutParent.innerHTML = ''; // Clear previous workouts    
     submittedWorkouts.forEach((submittedWorkout) => {
-        const workoutList = document.createElement('ol');
+        const workoutList = document.createElement('ul');
         for(let i = 0; i < submittedWorkout.exercises.length; i++){
             const exercise = document.createElement('li');
             exercise.textContent = submittedWorkout.exercises[i];
@@ -123,7 +123,7 @@ workoutParent.innerHTML = ''; // Clear previous workouts
 
 //Create a function that clears the submittedWorkouts'exercises
 function clearSubmittedWorkouts() {
-    workoutParent.innerHTML = '';    
+    workoutParent.innerHTML = '';   
 }    
 
 //-------------------------------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ function displayCompletedWorkouts() {
     storedWorkouts = JSON.parse(localStorage.getItem('submittedworkouts'));
     console.log(storedWorkouts); //this is logging the stored workouts
     storedWorkouts.forEach((storedWorkout) => {
-        const completedWorkoutList = document.createElement('ol');
+        const completedWorkoutList = document.createElement('ul');
         const completedWorkoutItem = document.createElement('li');
         completedWorkoutItem.textContent = `Congratualtions on completing ${storedWorkout.workoutCategory}`;
         completedWorkoutList.appendChild(completedWorkoutItem);
@@ -169,7 +169,7 @@ function loadCompletedWorkouts() {
     if (completedWorkouts) {
         completedWorkouts = JSON.parse(completedWorkouts);
         completedWorkouts.forEach((completedWorkout) => {
-        const completedWorkoutList = document.createElement('ol');
+        const completedWorkoutList = document.createElement('ul');
         const completedWorkoutItem = document.createElement('li');
         completedWorkoutItem.textContent = `Congratualtions on completing ${completedWorkout.workoutCategory}`;
         completedWorkoutList.appendChild(completedWorkoutItem);
@@ -184,7 +184,7 @@ function clearCompletedWorkouts() {
     previousWorkouts.innerHTML = '';
 }
 
-
+//clearCompletedWorkouts()
 // Call loadSubmittedWorkouts and completedworkouts when the page loads
 
 //window.addEventListener('load', loadSubmittedWorkouts);
