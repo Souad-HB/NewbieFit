@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--ash-gray);
+    background-color: var(--light-text);
 }
 
 body {
@@ -34,24 +34,12 @@ p {
 }
 
 /* Layout */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 1em;
-}
-
-.main-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1em 0;
-    background-color: var(--ash-gray);
     color: var(--dark-text);
 }
 
@@ -72,6 +60,7 @@ input[type="checkbox"] {
 }
 
 /* Buttons */
+
 input[type="submit"] {
     position: absolute;
     bottom: 20px;
@@ -90,18 +79,22 @@ input[type="submit"]:hover {
     color: var(--dark-text);
 }
 
-.section-head {
-    height: 57px;
-    width: 480px;
-    font-size: 150%;
-    font-weight: 800;
-    color: var(--light-text);
-    margin-top: -40px;
-    background-color: var(--eggplant);
-    border: 5px solid var(--silver);
-    border-radius: 8px;
+ul{
+    list-style: none;
+}
+
+ul li:before{
+    color:#000;
+    content: '\2713';
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+ul li,ol li {
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    margin-left: -50px;
 }
 
 /* Classes */
@@ -124,8 +117,37 @@ input[type="submit"]:hover {
 }
 
 .previousworkouts {
-    width: 75%;
     margin: 30px auto;
+}
+
+.section-head {
+    height: 40px;
+    width: 480px;
+    font-size: 120%;
+    font-weight: 800;
+    color: var(--light-text);
+    margin-top: -50px;
+    background-color: var(--eggplant);
+    border: 5px solid var(--silver);
+    border-radius: 8px;
+    justify-content: center;
+    align-content: center;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.footer {
+    text-align: center;
 }
 
 /* IDs */
@@ -149,6 +171,9 @@ input[type="submit"]:hover {
 }
 
 #form {
+    /*display: grid;
+    grid-template-columns: repeat(2, 1fr);*/
+    padding-top: 20px;
     font-size: 1rem;
     font-weight: bold;
     line-height: 1.1;
@@ -159,6 +184,10 @@ input[type="submit"]:hover {
     justify-items: center;
     align-items: center;
     padding: 0px;
+    text-align: left;
+}
+
+#allpreviousworkouts, #recomexercises {
     text-align: left;
 }
 

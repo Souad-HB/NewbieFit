@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NewbieFit</title>
     <link rel="stylesheet" href="assets/style.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="assets/bootstrap.css">
      
   </head>
   <body>
@@ -16,7 +16,7 @@
   </header>
   <div class="main-container">
     <section class="workouts">
-      <h2 class="section-head">Select The Muscles You Want To Workout</h2>
+      <h2 class="section-head">Select Your Workout</h2>
       <form id="form">
         <input type="checkbox" id="chest" name="workout" value="Chest"><label for="chest"><strong>Chest</strong></label><br>
         <input type="checkbox" id="triceps" name="workout" value="Triceps"><label for="triceps"><strong>Triceps<strong></label><br>
@@ -38,12 +38,17 @@
   </div>
        
   <section class="previousworkouts">
-    <h2 class="section-head">Previous Workouts</h2>
+    <h2 class="section-head">Achievements</h2>
     <ul id="allpreviousworkouts">
       <!--The previous workouts will go here for storage-->
     </ul> 
-    <input type="submit" id="clearworkouts" value="Clear Previous Workouts"></button> 
+    <input type="submit" id="clearworkouts" value="Clear History"></input>
   </section>
-  <script src="assets/script.js"></script>
   </body>
+  <footer class="footer">
+    <div>
+      <p><strong>Made By Sou & Coop</strong></p>
+    </div>
+  </footer>
+  <script src="assets/script.js"></script>
 </html>
