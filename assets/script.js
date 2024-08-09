@@ -83,6 +83,18 @@ complete.addEventListener('click', function(event){
     checkedWorkouts = [];
     clearSubmittedWorkouts();
     form.reset();
+    confetti({
+        particleCount: 1000,
+        spread: 800,
+        origin: { x: 1, y: 0.9 },
+      });
+
+      confetti({
+        particleCount: 1000,
+        spread: 800,
+        origin: { x: 0, y: 0.9 },
+      });
+
 });
 
 //EventListener for ClearPreviousWorkouts button:
