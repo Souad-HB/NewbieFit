@@ -64,6 +64,35 @@ let submittedWorkouts;
 let storedWorkouts;
 let completedWorkouts;
 
+//EventListener for the checkboxes:
+function getCheckedWorkouts() {   
+    checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', checkHandler);
+    });
+    return checkedWorkouts;
+};
+getCheckedWorkouts(); //To let me see things working on the console
+
+//EventListener for the form/bieFit button:
+form.addEventListener('submit', workoutSubmitHandler);
+
+//EventListener for the Complete button:
+complete.addEventListener('click', function(event){
+    event.preventDefault();
+    displayCompletedWorkouts();
+    checkedWorkouts = [];
+    clearSubmittedWorkouts();
+    form.reset();
+});
+
+//EventListener for ClearPreviousWorkouts button:
+clearWorkouts.addEventListener('click', function(event){
+    event.preventDefault();
+    clearCompletedWorkouts();
+})
+
+//EventListener for when the page loads to keep the previously completed workouts and not wipe them out at every reload
+window.addEventListener('load', loadCompletedWorkouts);
 
 //-------------------------------------------------------------------------------------------------------
 //Create a checkHandler function that will be the second argument for the checkboxes eventListener
@@ -81,37 +110,36 @@ function checkHandler (event) {
         console.log(checkedWorkouts);
     }
 }
-//-------------------------------------------------------------------------------------------------------
-//Create a function that gets the checkedWorkout after being checked.
-function getCheckedWorkouts() {
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', checkHandler);
-    });
-    return checkedWorkouts;
-
-};
-
-getCheckedWorkouts();
 
 //-------------------------------------------------------------------------------------------------------
-//Create a function that handles the button submission and stores the submittedWorkouts in localStorage
+//Create a function that handles the bieFit button submission and stores the submittedWorkouts in localStorage with the key'submittedworkouts'
 function workoutSubmitHandler(event) {
     event.preventDefault();
     submittedWorkouts = workoutsArray.filter((workout) => checkedWorkouts.includes(workout.workoutCategory))
     localStorage.setItem('submittedworkouts', JSON.stringify(submittedWorkouts));
-    clearSubmittedWorkouts(); //clears previously submitted workouts' exercises if they exist
     displaySubmittedWorkouts(); // displays the new submitted workouts' exercises
 
 }
 
-form.addEventListener('submit', workoutSubmitHandler);
-
+//-------------------------------------------------------------------------------------------------------
+//Fisher-Yates shuffle function taken from the docs
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 //-------------------------------------------------------------------------------------------------------
 //Create a function that would display the exercises from the submittedWorkouts
 function displaySubmittedWorkouts() {
     workoutParent.innerHTML = '';
     workoutList = document.createElement('ol');
+    //shuffle submittedWorkoutsexercises
+    submittedWorkouts.forEach ( item => shuffleArray(item.exercises) );
+
+    console.log(submittedWorkouts);
     submittedWorkouts.forEach((submittedWorkout) => {
         submittedWorkout.exercises.forEach((exerciseText) => {
             const exercise = document.createElement('li');
@@ -119,14 +147,9 @@ function displaySubmittedWorkouts() {
             workoutList.appendChild(exercise);
         })
     workoutParent.appendChild(workoutList);
+
     });
 };
-
-//Create a function that clears the submittedWorkouts'exercises
-function clearSubmittedWorkouts() {
-    workoutParent.innerHTML = '';   
-}    
-
 //-------------------------------------------------------------------------------------------------------
 // Create a function to load submittedWorkouts from localStorage on page load
 function loadSubmittedWorkouts() {
@@ -138,61 +161,80 @@ function loadSubmittedWorkouts() {
 }
 
 //-------------------------------------------------------------------------------------------------------
-//Read localStorage
-
+//Create a function that displays the completed workouts when it reads from the newly created localStorage with the key 'completedworkouts'
+let newCompletedWorkout = [];
 
 function displayCompletedWorkouts() {
+    console.log(newCompletedWorkout)
     let existingCompletedWorkouts = JSON.parse(localStorage.getItem('completedworkouts')) || [];
+    
+    const completedWorkoutList = document.createElement('ul');
     storedWorkouts = JSON.parse(localStorage.getItem('submittedworkouts'));
     console.log(storedWorkouts); //this is logging the stored workouts
-    storedWorkouts.forEach((storedWorkout) => {
-        const completedWorkoutList = document.createElement('ul');
-        const completedWorkoutItem = document.createElement('li');
-        completedWorkoutItem.textContent = `Congratualtions on completing ${storedWorkout.workoutCategory}`;
+    const completedWorkoutItem = document.createElement('li');
+   
+    if(!storedWorkouts) {
+        alert('select workouts first'); //this will be a modal later
+    }
+    else{
+    let newWorkoutParts = [];
+    storedWorkouts.forEach((storedWorkout, index) => { 
+    
+        const workoutCategories = storedWorkouts.map(workout => workout.workoutCategory).join(', '); //map creates the array of only workoutCategry elements, and join joins them toegether into a string seperated by comma. // ex: "Chest, Triceps"
+        completedWorkoutItem.textContent = `Congratulations on completing the following workout(s): ${workoutCategories}.`;
         completedWorkoutList.appendChild(completedWorkoutItem);
         previousWorkouts.appendChild(completedWorkoutList);
-        existingCompletedWorkouts.push(storedWorkout);
+        console.log(completedWorkoutList);
+   
+        newWorkoutParts.push(storedWorkout.workoutCategory);
+        console.log(newWorkoutParts);
+        if (index === (storedWorkouts.length-1)){
+            console.log('once');
+            newCompletedWorkout.push(newWorkoutParts);
+            console.log(newCompletedWorkout);
+            newCompletedWorkout.forEach((newWorkout) => {
+                existingCompletedWorkouts.push(newWorkout);
+            })
+            newCompletedWorkout = [];
+            console.log(existingCompletedWorkouts);
+            localStorage.setItem('completedworkouts', JSON.stringify(existingCompletedWorkouts));
+
+            
+        }
     });
-     // Store the entire storedWorkouts array in localStorage under the key 'completedworkouts'
-     localStorage.setItem('completedworkouts', JSON.stringify(existingCompletedWorkouts));
+}
 };
 
-complete.addEventListener('click', function(event){
-    event.preventDefault();
-    displayCompletedWorkouts();
-    checkedWorkouts = [];
-    clearSubmittedWorkouts();
-    form.reset();
-});
-
+//-------------------------------------------------------------------------------------------------------
+//Create a function that loads the completed workouts from localStorage of 'completedworkouts'
 function loadCompletedWorkouts() {
     let completedWorkouts = localStorage.getItem('completedworkouts');
     if (completedWorkouts) {
         completedWorkouts = JSON.parse(completedWorkouts);
-        completedWorkouts.forEach((completedWorkout) => {
+        console.log(completedWorkouts);
         const completedWorkoutList = document.createElement('ul');
-        const completedWorkoutItem = document.createElement('li');
-        completedWorkoutItem.textContent = `Congratualtions on completing ${completedWorkout.workoutCategory}`;
-        completedWorkoutList.appendChild(completedWorkoutItem);
-        previousWorkouts.appendChild(completedWorkoutList);
-        })
+        completedWorkouts.forEach((completedWorkout) => {
+            const completedWorkoutItem = document.createElement('li');
+            const workoutCategories = completedWorkout.join(', ');            
+            completedWorkoutItem.textContent = `Congratulations on completing the following workout(s) ${workoutCategories}`;
+            completedWorkoutList.appendChild(completedWorkoutItem);
+            previousWorkouts.appendChild(completedWorkoutList);
+        });
     }
 }
 
+//-------------------------------------------------------------------------------------------------------
+//Create a function that clears the completed workouts when it reads from localStorage of 'completedworkouts'
 function clearCompletedWorkouts() {
     localStorage.removeItem('completedworkouts');
     //clear the displayed completed workouts from the DOM
     previousWorkouts.innerHTML = '';
 }
 
-
-//clearCompletedWorkouts()
-// Call loadSubmittedWorkouts and completedworkouts when the page loads
-clearWorkouts.addEventListener('click', function(event){
-    event.preventDefault();
-    clearCompletedWorkouts();
-})
-
-//window.addEventListener('load', loadSubmittedWorkouts);
-window.addEventListener('load', loadCompletedWorkouts);
+//-------------------------------------------------------------------------------------------------------
+//Create a function that resets the submittedWorkouts'exercises
+function clearSubmittedWorkouts() {
+    localStorage.removeItem('submittedworkouts');  
+    workoutParent.innerHTML = ''; 
+}   
 
