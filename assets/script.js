@@ -4,9 +4,13 @@ const checkboxes = document.querySelectorAll('input[name="workout"]');
 const biefit = document.querySelector('#biefit');
 const recomExercises = document.querySelector('#recomexercises');
 const complete = document.querySelector('#complete');
+complete.disabled = true;
 const previousWorkouts = document.querySelector('#allpreviousworkouts');
 const workoutParent = document.querySelector('#recomexercises');
-const clearWorkouts = document.querySelector('#clearworkouts')
+const clearWorkouts = document.querySelector('#clearworkouts');
+const currentDate = new Date().toLocaleDateString();
+
+
 
 // Make the workoutsArray that holds each workout along with its exercises
 const workoutsArray = [
@@ -130,6 +134,7 @@ function workoutSubmitHandler(event) {
     submittedWorkouts = workoutsArray.filter((workout) => checkedWorkouts.includes(workout.workoutCategory))
     localStorage.setItem('submittedworkouts', JSON.stringify(submittedWorkouts));
     displaySubmittedWorkouts(); // displays the new submitted workouts' exercises
+    complete.disabled = false;
 
 }
 
@@ -149,8 +154,7 @@ function displaySubmittedWorkouts() {
     workoutParent.innerHTML = '';
     workoutList = document.createElement('ol');
     //shuffle submittedWorkoutsexercises
-    submittedWorkouts.forEach ( item => shuffleArray(item.exercises) );
-
+    submittedWorkouts.forEach ( submittedWorkout => shuffleArray(submittedWorkout.exercises) );
     console.log(submittedWorkouts);
     submittedWorkouts.forEach((submittedWorkout) => {
         submittedWorkout.exercises.forEach((exerciseText) => {
@@ -193,7 +197,7 @@ function displayCompletedWorkouts() {
     storedWorkouts.forEach((storedWorkout, index) => { 
     
         const workoutCategories = storedWorkouts.map(workout => workout.workoutCategory).join(', '); //map creates the array of only workoutCategry elements, and join joins them toegether into a string seperated by comma. // ex: "Chest, Triceps"
-        completedWorkoutItem.textContent = `Congratulations on completing the following workout(s): ${workoutCategories}.`;
+        completedWorkoutItem.textContent = `On ${currentDate}, you completed the following workout(s): ${workoutCategories}`;
         completedWorkoutList.appendChild(completedWorkoutItem);
         previousWorkouts.appendChild(completedWorkoutList);
         console.log(completedWorkoutList);
