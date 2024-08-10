@@ -4,10 +4,15 @@ const checkboxes = document.querySelectorAll('input[name="workout"]');
 const biefit = document.querySelector('#biefit');
 const recomExercises = document.querySelector('#recomexercises');
 const complete = document.querySelector('#complete');
-complete.disabled = true;
 const previousWorkouts = document.querySelector('#allpreviousworkouts');
 const workoutParent = document.querySelector('#recomexercises');
 const clearWorkouts = document.querySelector('#clearworkouts');
+let newCompletedWorkout = [];
+let newStoredDate = [];
+let checkedWorkouts = [];
+let submittedWorkouts;
+let storedWorkouts;
+let completedWorkouts;
 const currentDate = new Date().toLocaleDateString();
 
 
@@ -63,10 +68,7 @@ const workoutsArray = [
         ]
     },
 ];
-let checkedWorkouts = [];
-let submittedWorkouts;
-let storedWorkouts;
-let completedWorkouts;
+
 
 //EventListener for the checkboxes:
 function getCheckedWorkouts() {   
@@ -87,6 +89,12 @@ complete.addEventListener('click', function(event){
     checkedWorkouts = [];
     clearSubmittedWorkouts();
     form.reset();
+    requestAnimationFrame(triggerConfetti);
+    complete.disabled = true;
+
+});
+
+function triggerConfetti(){
     confetti({
         particleCount: 1000,
         spread: 800,
@@ -98,8 +106,7 @@ complete.addEventListener('click', function(event){
         spread: 800,
         origin: { x: 0, y: 0.9 },
       });
-
-});
+}
 
 //EventListener for ClearPreviousWorkouts button:
 clearWorkouts.addEventListener('click', function(event){
@@ -178,61 +185,67 @@ function loadSubmittedWorkouts() {
 
 //-------------------------------------------------------------------------------------------------------
 //Create a function that displays the completed workouts when it reads from the newly created localStorage with the key 'completedworkouts'
-let newCompletedWorkout = [];
+
 
 function displayCompletedWorkouts() {
-    console.log(newCompletedWorkout)
+    console.log(newCompletedWorkout);
     let existingCompletedWorkouts = JSON.parse(localStorage.getItem('completedworkouts')) || [];
-    
+    let existingStoredDates = JSON.parse(localStorage.getItem('storeddates')) || [];
     const completedWorkoutList = document.createElement('ul');
     storedWorkouts = JSON.parse(localStorage.getItem('submittedworkouts'));
     console.log(storedWorkouts); //this is logging the stored workouts
     const completedWorkoutItem = document.createElement('li');
-   
-    if(!storedWorkouts) {
-        alert('select workouts first'); //this will be a modal later
-    }
-    else{
-    let newWorkoutParts = [];
-    storedWorkouts.forEach((storedWorkout, index) => { 
-    
-        const workoutCategories = storedWorkouts.map(workout => workout.workoutCategory).join(', '); //map creates the array of only workoutCategry elements, and join joins them toegether into a string seperated by comma. // ex: "Chest, Triceps"
-        completedWorkoutItem.textContent = `On ${currentDate}, you completed the following workout(s): ${workoutCategories}`;
-        completedWorkoutList.appendChild(completedWorkoutItem);
-        previousWorkouts.appendChild(completedWorkoutList);
-        console.log(completedWorkoutList);
-   
-        newWorkoutParts.push(storedWorkout.workoutCategory);
-        console.log(newWorkoutParts);
-        if (index === (storedWorkouts.length-1)){
-            console.log('once');
-            newCompletedWorkout.push(newWorkoutParts);
-            console.log(newCompletedWorkout);
-            newCompletedWorkout.forEach((newWorkout) => {
-                existingCompletedWorkouts.push(newWorkout);
-            })
-            newCompletedWorkout = [];
-            console.log(existingCompletedWorkouts);
-            localStorage.setItem('completedworkouts', JSON.stringify(existingCompletedWorkouts));
 
+        let newWorkoutParts = [];
+        let storedDates = [];
+        storedWorkouts.forEach((storedWorkout, index) => {
+            const workoutCategories = storedWorkouts.map(workout => workout.workoutCategory).join(', '); //map creates the array of only workoutCategry elements, and join joins them toegether into a string seperated by comma. // ex: "Chest, Triceps"
+            completedWorkoutItem.textContent = `On ${currentDate}, you completed the following workout(s): ${workoutCategories}`;
+            completedWorkoutList.appendChild(completedWorkoutItem);
+            previousWorkouts.appendChild(completedWorkoutList);
+            console.log(completedWorkoutList);
             
-        }
-    });
-}
+            storedDates.push(currentDate);
+            console.log(storedDates)
+            newWorkoutParts.push(storedWorkout.workoutCategory);
+            console.log(newWorkoutParts);
+            if (index === (storedWorkouts.length - 1)) {
+                newCompletedWorkout.push(newWorkoutParts);
+                newStoredDate.push(currentDate); //Im pushing the current date for each workout
+                console.log(newCompletedWorkout);
+                console.log(newStoredDate);
+                newCompletedWorkout.forEach((newWorkout) => {
+                    existingCompletedWorkouts.push(newWorkout);
+
+                });
+                existingStoredDates.push(...newStoredDate);
+                newCompletedWorkout = [];
+                newStoredDate = [];
+                console.log(existingCompletedWorkouts);
+                console.log(existingStoredDates);
+                localStorage.setItem('completedworkouts', JSON.stringify(existingCompletedWorkouts));
+                localStorage.setItem('storeddates', JSON.stringify(existingStoredDates));
+            }
+        });
+    
 };
 
 //-------------------------------------------------------------------------------------------------------
 //Create a function that loads the completed workouts from localStorage of 'completedworkouts'
 function loadCompletedWorkouts() {
     let completedWorkouts = localStorage.getItem('completedworkouts');
+    let allStoredDates = localStorage.getItem('storeddates');
     if (completedWorkouts) {
         completedWorkouts = JSON.parse(completedWorkouts);
+        allStoredDates = JSON.parse(allStoredDates);
         console.log(completedWorkouts);
+        console.log(allStoredDates);
         const completedWorkoutList = document.createElement('ul');
-        completedWorkouts.forEach((completedWorkout) => {
+        completedWorkouts.forEach((completedWorkout, index) => {
             const completedWorkoutItem = document.createElement('li');
-            const workoutCategories = completedWorkout.join(', ');            
-            completedWorkoutItem.textContent = `Congratulations on completing the following workout(s) ${workoutCategories}`;
+            const workoutCategories = completedWorkout.join(', ');
+            const workoutDate = allStoredDates[index];
+            completedWorkoutItem.textContent = `On ${workoutDate}, you completed the following workout(s): ${workoutCategories}`;
             completedWorkoutList.appendChild(completedWorkoutItem);
             previousWorkouts.appendChild(completedWorkoutList);
         });
