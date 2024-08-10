@@ -25,6 +25,10 @@ const workoutsArray = [
             "Bench Press",
             "Chest Fly",
             "Push Ups",
+            "Incline Bench Press",
+            "Cable Crossover",
+            "Decline Bench Press",
+            "Dumbbell Pullover",
         ]
     },
     {
@@ -33,6 +37,10 @@ const workoutsArray = [
             "Tricep Dips",
             "Skull Crushers",
             "Tricep Kickbacks",
+            "Diamond Push-ups",
+            "Kickbacks",
+            "Overhead Triceps Extension",
+            "Close Grip Bench Press",
         ]
     },
     {
@@ -41,6 +49,10 @@ const workoutsArray = [
             "Pull Ups",
             "Deadlift",
             "Bent Over Rows",
+            "Lat Pulldown",
+            "Single-Arm Dumbbell Row",
+            "T-Bar Row",
+            "Seated Cable Row",
         ]
     },
     {
@@ -49,6 +61,7 @@ const workoutsArray = [
             "Bicep Curls",
             "Hammer Curls",
             "Concentration Curls",
+
         ]
     },
     {
@@ -57,6 +70,10 @@ const workoutsArray = [
             "Squats",
             "Lunges",
             "Leg Press",
+            "Bulgarian Split Squats",
+            "Leg Extension",
+            "Glute Bridges",
+            "Sumo Squats",
         ]
     },
     {
@@ -64,7 +81,11 @@ const workoutsArray = [
         exercises: [
             "Flutter Kicks",
             "Crunches",
-            "Leg Raises",
+            "Russian Twist",
+            "Mountain Climbers",
+            "Dead Bug",
+            "Side Planks",
+            "Bicycle Crunch",
         ]
     },
 ];
@@ -87,13 +108,27 @@ complete.addEventListener('click', function(event){
     event.preventDefault();
     displayCompletedWorkouts();
     checkedWorkouts = [];
-    clearSubmittedWorkouts();
     form.reset();
-    requestAnimationFrame(triggerConfetti);
+    if(submittedWorkouts && submittedWorkouts.length > 0){
+        requestAnimationFrame(triggerConfetti);
+    }
     complete.disabled = true;
+    clearSubmittedWorkouts();
 
 });
 
+
+//EventListener for ClearPreviousWorkouts button:
+clearWorkouts.addEventListener('click', function(event){
+    event.preventDefault();
+    clearCompletedWorkouts();
+})
+
+//EventListener for when the page loads to keep the previously completed workouts and not wipe them out at every reload
+window.addEventListener('load', loadCompletedWorkouts);
+
+//-------------------------------------------------------------------------------------------------------
+// function to trigger the confetti effect
 function triggerConfetti(){
     confetti({
         particleCount: 1000,
@@ -106,16 +141,7 @@ function triggerConfetti(){
         spread: 800,
         origin: { x: 0, y: 0.9 },
       });
-}
-
-//EventListener for ClearPreviousWorkouts button:
-clearWorkouts.addEventListener('click', function(event){
-    event.preventDefault();
-    clearCompletedWorkouts();
-})
-
-//EventListener for when the page loads to keep the previously completed workouts and not wipe them out at every reload
-window.addEventListener('load', loadCompletedWorkouts);
+};
 
 //-------------------------------------------------------------------------------------------------------
 //Create a checkHandler function that will be the second argument for the checkboxes eventListener
@@ -138,12 +164,11 @@ function checkHandler (event) {
 //Create a function that handles the bieFit button submission and stores the submittedWorkouts in localStorage with the key'submittedworkouts'
 function workoutSubmitHandler(event) {
     event.preventDefault();
-    submittedWorkouts = workoutsArray.filter((workout) => checkedWorkouts.includes(workout.workoutCategory))
+    submittedWorkouts = workoutsArray.filter((workout) => checkedWorkouts.includes(workout.workoutCategory));
     localStorage.setItem('submittedworkouts', JSON.stringify(submittedWorkouts));
     displaySubmittedWorkouts(); // displays the new submitted workouts' exercises
     complete.disabled = false;
-
-}
+};
 
 //-------------------------------------------------------------------------------------------------------
 //Fisher-Yates shuffle function taken from the docs
@@ -163,7 +188,13 @@ function displaySubmittedWorkouts() {
     //shuffle submittedWorkoutsexercises
     submittedWorkouts.forEach ( submittedWorkout => shuffleArray(submittedWorkout.exercises) );
     console.log(submittedWorkouts);
-    submittedWorkouts.forEach((submittedWorkout) => {
+    const submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+        workout,
+        exercises: workout.exercises.slice(0, 2)
+    }));
+    console.log(submittedWorkoutsLimitedExercises);
+
+    submittedWorkoutsLimitedExercises.forEach((submittedWorkout) => {
         submittedWorkout.exercises.forEach((exerciseText) => {
             const exercise = document.createElement('li');
             exercise.textContent = exerciseText;
@@ -175,13 +206,16 @@ function displaySubmittedWorkouts() {
 };
 //-------------------------------------------------------------------------------------------------------
 // Create a function to load submittedWorkouts from localStorage on page load
-function loadSubmittedWorkouts() {
-    storedWorkouts = localStorage.getItem('submittedworkouts');
-    if (storedWorkouts) {
-        submittedWorkouts = JSON.parse(storedWorkouts);
-        displaySubmittedWorkouts();
-    }
-}
+// function limitedExercises(submittedWorkouts, limit) {
+//     return submittedWorkouts.map(submittedWorkout => {
+//         return{
+//             ...submittedWorkout,
+//             exercises: submittedWorkout.slice(0, limit)
+//         };
+//         }
+//     );
+// }
+// limitedExercises(submittedWorkouts, 2);
 
 //-------------------------------------------------------------------------------------------------------
 //Create a function that displays the completed workouts when it reads from the newly created localStorage with the key 'completedworkouts'
@@ -216,9 +250,8 @@ function displayCompletedWorkouts() {
                 console.log(newStoredDate);
                 newCompletedWorkout.forEach((newWorkout) => {
                     existingCompletedWorkouts.push(newWorkout);
-
+                    existingStoredDates.push(...newStoredDate);
                 });
-                existingStoredDates.push(...newStoredDate);
                 newCompletedWorkout = [];
                 newStoredDate = [];
                 console.log(existingCompletedWorkouts);
@@ -256,6 +289,7 @@ function loadCompletedWorkouts() {
 //Create a function that clears the completed workouts when it reads from localStorage of 'completedworkouts'
 function clearCompletedWorkouts() {
     localStorage.removeItem('completedworkouts');
+    localStorage.removeItem('storedworkouts');
     //clear the displayed completed workouts from the DOM
     previousWorkouts.innerHTML = '';
 }
