@@ -1,4 +1,4 @@
-// Access the DOM elements
+// Access the DOM elements and define variables
 const form = document.querySelector('#form');
 const checkboxes = document.querySelectorAll('input[name="workout"]');
 const biefit = document.querySelector('#biefit');
@@ -7,14 +7,13 @@ const complete = document.querySelector('#complete');
 const previousWorkouts = document.querySelector('#allpreviousworkouts');
 const workoutParent = document.querySelector('#recomexercises');
 const clearWorkouts = document.querySelector('#clearworkouts');
+const currentDate = new Date().toLocaleDateString();
 let newCompletedWorkout = [];
 let newStoredDate = [];
 let checkedWorkouts = [];
 let submittedWorkouts;
 let storedWorkouts;
 let completedWorkouts;
-const currentDate = new Date().toLocaleDateString();
-
 
 
 // Make the workoutsArray that holds each workout along with its exercises
@@ -90,7 +89,6 @@ const workoutsArray = [
     },
 ];
 
-
 //EventListener for the checkboxes:
 function getCheckedWorkouts() {   
     checkboxes.forEach(function(checkbox) {
@@ -98,7 +96,7 @@ function getCheckedWorkouts() {
     });
     return checkedWorkouts;
 };
-getCheckedWorkouts(); //To let me see things working on the console
+getCheckedWorkouts();
 
 //EventListener for the form/bieFit button:
 form.addEventListener('submit', workoutSubmitHandler);
@@ -114,9 +112,7 @@ complete.addEventListener('click', function(event){
     }
     complete.disabled = true;
     clearSubmittedWorkouts();
-
 });
-
 
 //EventListener for ClearPreviousWorkouts button:
 clearWorkouts.addEventListener('click', function(event){
@@ -171,7 +167,7 @@ function workoutSubmitHandler(event) {
 };
 
 //-------------------------------------------------------------------------------------------------------
-//Fisher-Yates shuffle function taken from the docs
+//Fisher-Yates shuffle function
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -183,16 +179,48 @@ function shuffleArray(array) {
 //-------------------------------------------------------------------------------------------------------
 //Create a function that would display the exercises from the submittedWorkouts
 function displaySubmittedWorkouts() {
+    let submittedWorkoutsLimitedExercises;
     workoutParent.innerHTML = '';
     workoutList = document.createElement('ol');
     //shuffle submittedWorkoutsexercises
     submittedWorkouts.forEach ( submittedWorkout => shuffleArray(submittedWorkout.exercises) );
     console.log(submittedWorkouts);
-    const submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+    if(submittedWorkouts.length === 1) {
+    submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
         workout,
-        exercises: workout.exercises.slice(0, 2)
+        exercises: workout.exercises.slice(0, 5)
     }));
-    console.log(submittedWorkoutsLimitedExercises);
+    }
+    if(submittedWorkouts.length === 2) {
+        submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+            workout,
+            exercises: workout.exercises.slice(0, 3)
+        }));
+    }
+    if(submittedWorkouts.length === 3) {
+        submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+            workout,
+            exercises: workout.exercises.slice(0, 2)
+        }));
+    }
+    if(submittedWorkouts.length === 4) {
+        submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+            workout,
+            exercises: workout.exercises.slice(0, 2)
+        }));
+    }
+    if(submittedWorkouts.length === 5) {
+        submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+            workout,
+            exercises: workout.exercises.slice(0, 2)
+        }));
+    }
+    if(submittedWorkouts.length === 6) {
+        submittedWorkoutsLimitedExercises = submittedWorkouts.map(workout => ({
+            workout,
+            exercises: workout.exercises.slice(0, 1)
+        }));
+    }
 
     submittedWorkoutsLimitedExercises.forEach((submittedWorkout) => {
         submittedWorkout.exercises.forEach((exerciseText) => {
@@ -204,23 +232,9 @@ function displaySubmittedWorkouts() {
 
     });
 };
-//-------------------------------------------------------------------------------------------------------
-// Create a function to load submittedWorkouts from localStorage on page load
-// function limitedExercises(submittedWorkouts, limit) {
-//     return submittedWorkouts.map(submittedWorkout => {
-//         return{
-//             ...submittedWorkout,
-//             exercises: submittedWorkout.slice(0, limit)
-//         };
-//         }
-//     );
-// }
-// limitedExercises(submittedWorkouts, 2);
 
 //-------------------------------------------------------------------------------------------------------
 //Create a function that displays the completed workouts when it reads from the newly created localStorage with the key 'completedworkouts'
-
-
 function displayCompletedWorkouts() {
     console.log(newCompletedWorkout);
     let existingCompletedWorkouts = JSON.parse(localStorage.getItem('completedworkouts')) || [];
@@ -255,7 +269,6 @@ function displayCompletedWorkouts() {
                 newCompletedWorkout = [];
                 newStoredDate = [];
                 console.log(existingCompletedWorkouts);
-                console.log(existingStoredDates);
                 localStorage.setItem('completedworkouts', JSON.stringify(existingCompletedWorkouts));
                 localStorage.setItem('storeddates', JSON.stringify(existingStoredDates));
             }
@@ -271,8 +284,9 @@ function loadCompletedWorkouts() {
     if (completedWorkouts) {
         completedWorkouts = JSON.parse(completedWorkouts);
         allStoredDates = JSON.parse(allStoredDates);
-        console.log(completedWorkouts);
-        console.log(allStoredDates);
+        console.log(`Stored Dates are: ${allStoredDates}`)
+        console.log(`completed workouts are: ${completedWorkouts}`);
+
         const completedWorkoutList = document.createElement('ul');
         completedWorkouts.forEach((completedWorkout, index) => {
             const completedWorkoutItem = document.createElement('li');
@@ -289,7 +303,7 @@ function loadCompletedWorkouts() {
 //Create a function that clears the completed workouts when it reads from localStorage of 'completedworkouts'
 function clearCompletedWorkouts() {
     localStorage.removeItem('completedworkouts');
-    localStorage.removeItem('storedworkouts');
+    localStorage.removeItem('storeddates');
     //clear the displayed completed workouts from the DOM
     previousWorkouts.innerHTML = '';
 }
