@@ -21,70 +21,68 @@ const workoutsArray = [
     {
         workoutCategory: "Chest",
         exercises: [
-            "Bench Press",
-            "Chest Fly",
-            "Push Ups",
-            "Incline Bench Press",
-            "Cable Crossover",
-            "Decline Bench Press",
-            "Dumbbell Pullover",
+            '<a href="https://weighttraining.guide/exercises/bench-press/" target="_Blank">Bench Press</a>',
+            '<a href="https://weighttraining.guide/exercises/standing-high-to-low-cable-fly/" target="_Blank">Chest Fly</a>',
+            '<a href="https://weighttraining.guide/exercises/dumbbell-deficit-push-up/" target="_Blank">Push Ups</a>',
+            '<a href="https://weighttraining.guide/exercises/smith-machine-incline-bench-press/" target="_Blank">Incline Bench Press</a>',
+            '<a href="#" target="_Blank">Cable Crossover</a>',
+            '<a href="https://weighttraining.guide/exercises/decline-dumbbell-bench-press/" target="_Blank">Decline Bench Press</a>',
+            '<a href="https://weighttraining.guide/exercises/dumbbell-pullover/" target="_Blank">Dumbbell Pullover</a>',
         ]
     },
     {
         workoutCategory: "Triceps",
         exercises: [
-            "Tricep Dips",
-            "Skull Crushers",
-            "Tricep Kickbacks",
-            "Diamond Push-ups",
-            "Kickbacks",
-            "Overhead Triceps Extension",
-            "Close Grip Bench Press",
+            '<a href="https://weighttraining.guide/exercises/machine-assisted-chest-dip/" target="_Blank">Tricep Dips</a>',
+            '<a href="https://weighttraining.guide/exercises/barbell-skull-crusher/" target="_Blank">Skull Crushers</a>',
+            '<a href="https://weighttraining.guide/exercises/standing-dumbbell-kickback/" target="_Blank">Tricep Kickbacks</a>',
+            '<a href="https://weighttraining.guide/exercises/diamond-push-up/" target="_Blank">Diamond Push-ups</a>',
+            '<a href="https://weighttraining.guide/exercises/lying-one-arm-cross-body-dumbbell-triceps-extension/" target="_Blank">Overhead Triceps Extension</a>',
+            '<a href="https://weighttraining.guide/exercises/close-grip-barbell-bench-press/" target="_Blank">Close Grip Bench Press</a>',
         ]
     },
     {
         workoutCategory: "Back",
         exercises: [
-            "Pull Ups",
-            "Deadlift",
-            "Bent Over Rows",
-            "Lat Pulldown",
-            "Single-Arm Dumbbell Row",
-            "T-Bar Row",
-            "Seated Cable Row",
+            '<a href="https://weighttraining.guide/exercises/l-sit-pull-up/" target="_Blank">Pull Ups</a>',
+            '<a href="https://weighttraining.guide/exercises/reverse-grip-lat-pull-down/" target="_Blank">Reverse Grip Lat Pulldown</a>',
+            '<a href="https://weighttraining.guide/exercises/straight-back-seated-underhand-cable-row/" target="_Blank">Underhead Cable Rows</a>',
+            '<a href="https://weighttraining.guide/exercises/medium-grip-lat-pull-down/" target="_Blank">Lat Pulldown</a>',
+            '<a href="https://weighttraining.guide/exercises/bent-over-dumbbell-row/" target="_Blank">Single-Arm Dumbbell Row</a>',
+            '<a href="https://weighttraining.guide/exercises/t-bar-row/" target="_Blank">T-Bar Row</a>',
+            '<a href="https://weighttraining.guide/exercises/straight-back-seated-cable-row-with-straight-bar/" target="_Blank">Seated Cable Row</a>',
         ]
     },
     {
         workoutCategory: "Biceps",
         exercises: [
-            "Bicep Curls",
-            "Hammer Curls",
-            "Concentration Curls",
-
+            '<a href="https://weighttraining.guide/exercises/close-grip-ez-bar-curl/" target="_Blank">EZ Bar Curls</a>',
+            '<a href="https://weighttraining.guide/exercises/one-arm-dumbbell-preacher-curl/" target="_Blank">Hammer Curls</a>',
+            '<a href="https://weighttraining.guide/exercises/standing-barbell-concentration-curl/" target="_Blank">Concentration Curls</a>',
         ]
     },
     {
         workoutCategory: "Legs",
         exercises: [
-            "Squats",
-            "Lunges",
-            "Leg Press",
-            "Bulgarian Split Squats",
-            "Leg Extension",
-            "Glute Bridges",
-            "Sumo Squats",
+            '<a href="https://weighttraining.guide/exercises/smith-chair-squat/" target="_Blank">Squats</a>',
+            '<a href="https://weighttraining.guide/exercises/barbell-lunge/" target="_Blank">Lunges</a>',
+            '<a href="https://weighttraining.guide/exercises/incline-leg-press/" target="_Blank">Leg Press</a>',
+            '<a href="https://weighttraining.guide/exercises/bulgarian-split-squat/" target="_Blank">Bulgarian Split Squats</a>',
+            '<a href="https://weighttraining.guide/exercises/leg-extension/" target="_Blank">Leg Extension</a>',
+            '<a href="https://weighttraining.guide/exercises/barbell-glute-bridge/" target="_Blank">Glute Bridges</a>',
+            '<a href="https://weighttraining.guide/exercises/dumbbell-sumo-squat-2/" target="_Blank">Sumo Squats</a>',
         ]
     },
     {
         workoutCategory: "Core",
         exercises: [
-            "Flutter Kicks",
-            "Crunches",
-            "Russian Twist",
-            "Mountain Climbers",
-            "Dead Bug",
-            "Side Planks",
-            "Bicycle Crunch",
+            '<a href="https://weighttraining.guide/exercises/extra-decline-sit-up/" target="_Blank">Decline Sit-ups</a>',
+            '<a href="https://weighttraining.guide/exercises/crunch/" target="_Blank">Crunches</a>',
+            '<a href="https://weighttraining.guide/exercises/weighted-russian-twist/" target="_Blank">Russian Twist</a>',
+            '<a href="https://weighttraining.guide/exercises/seated-cross-scissor-kick/" target="_Blank">Scissor Kicks</a>',
+            '<a href="https://weighttraining.guide/exercises/dead-bug-with-no-arm-movement/" target="_Blank">Dead Bug</a>',
+            '<a href="https://weighttraining.guide/exercises/high-side-plank/" target="_Blank">Side Planks</a>',
+            '<a href="https://weighttraining.guide/exercises/bicycle-crunch/" target="_Blank">Bicycle Crunch</a>',
         ]
     },
 ];
@@ -225,7 +223,7 @@ function displaySubmittedWorkouts() {
     submittedWorkoutsLimitedExercises.forEach((submittedWorkout) => {
         submittedWorkout.exercises.forEach((exerciseText) => {
             const exercise = document.createElement('li');
-            exercise.textContent = exerciseText;
+            exercise.innerHTML = exerciseText;
             workoutList.appendChild(exercise);
         })
     workoutParent.appendChild(workoutList);
