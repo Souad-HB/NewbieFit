@@ -21,11 +21,11 @@ const workoutsArray = [
     {
         workoutCategory: "Chest",
         exercises: [
-            '<a href="https://weighttraining.guide/exercises/bench-press/" target="_Blank">Bench Press</a>',
+            '<a href="https://weighttraining.guide/exercises/bench-press/" target="_Blank" text>Bench Press</a>',
             '<a href="https://weighttraining.guide/exercises/standing-high-to-low-cable-fly/" target="_Blank">Chest Fly</a>',
             '<a href="https://weighttraining.guide/exercises/dumbbell-deficit-push-up/" target="_Blank">Push Ups</a>',
             '<a href="https://weighttraining.guide/exercises/smith-machine-incline-bench-press/" target="_Blank">Incline Bench Press</a>',
-            '<a href="#" target="_Blank">Cable Crossover</a>',
+            '<a href="https://weighttraining.guide/exercises/machine-chest-press/" target="_Blank">Cable Chest Press</a>',
             '<a href="https://weighttraining.guide/exercises/decline-dumbbell-bench-press/" target="_Blank">Decline Bench Press</a>',
             '<a href="https://weighttraining.guide/exercises/dumbbell-pullover/" target="_Blank">Dumbbell Pullover</a>',
         ]
