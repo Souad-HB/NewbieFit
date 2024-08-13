@@ -1,7 +1,8 @@
 :root {
     --ash-gray: #BFC3BA;
     --silver: #A9ACA9;
-    --eggplant: #60495A;
+    --light-blue: #0e2839;
+    --dark-blue: #0e1b29;
     --dark-text: #070707;
     --light-text: #FFFFF2;
     --black: #000;
@@ -12,27 +13,17 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url();
+    background-image: url(/assets/running.girl.jpg);
     background-size: cover;
 }
 
-body {
-    background-color: var(--background);
-}
-
-/* Typography */
-h1 {
-    font-weight: bold;
-    text-orientation: upright;
-    writing-mode: vertical-lr;
-    margin: 0px 40px 0px 0px;
-    margin-bottom: 0px;
-}
-
 p {
-    margin: 0;
-    padding: 0.5em 0;
+    padding-top: 10px;
+}
+
+a {
+    color: var(--dark-blue);
+    text-decoration: none;
 }
 
 /* Checkbox Styling */
@@ -51,8 +42,6 @@ input[type="checkbox"] {
     flex: 0 0 100%;
 }
 
-/* Buttons */
-
 input[type="submit"] {
     position: absolute;
     width: 150px;
@@ -60,9 +49,9 @@ input[type="submit"] {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--silver);
+    background-color: var(--dark-blue);
     color: white;
-    padding: 0.5em 1em;
+    font-weight: bold;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -75,6 +64,10 @@ input[type="submit"]:hover {
 
 ul{
     list-style: none;
+}
+
+ol {
+    line-height: 30px;
 }
 
 ul li:before{
@@ -92,44 +85,18 @@ ul li,ol li {
 }
 
 /* Classes */
-.workouts, .exercises, .previousworkouts {
-    width: 550px;
-    height: 270px;
-    background-color: var(--light-text);
-    color: var(--dark-text);
-    border: 1px solid var(--silver);
-    border-radius: 8px;
-    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
-    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
-    margin: 30px; 
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.previousworkouts {
-    margin: 30px auto;
-}
-
-.section-head h2 {
-    margin-top: 5px;
-}
 
 .section-head {
-    height: 40px;
-    width: 350px;
+    height: 50px;
+    width: 553px;
     font-size: 120%;
     font-weight: 800;
     color: var(--light-text);
     margin-top: -40px;
-    background-color: var(--eggplant);
+    background-color: var(--dark-blue);
     border: 1px solid var(--silver);
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
     rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
-    border-radius: 8px;
     justify-content: center;
     text-align: center;
 }
@@ -143,51 +110,109 @@ ul li,ol li {
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .footer {
-    text-align: center;
+    color: var(--dark-text);
+    text-align: right;
+    margin-right: 45px;
+    font-weight: bolder;
 }
 
 /* IDs */
 
 #main-header {
-    font-family: 'copperplate', 'fantasy';
     display: flex;
     align-items: center;
     justify-content: right;
-    color: var(--light-text);
+    color: var(--dark-blue);
     letter-spacing: 2px;
-    font-size: 150%;
+    font-size: 180%;
     font-weight: 800;
     text-align: center;
-    height: 550px;
+    height: 90px;
     margin: 0px 0px 50px 0px;
     width: 100%;
     top: 0;
     left: 0;
 }
 
-#form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding-top: 15px;
-    font-size: 1rem;
+#header-title {
+    font-size: 80px;
     font-weight: bold;
+    margin: 0px 40px 0px 0px;
+    margin-bottom: 0px;
+}
+
+#workouts, #exercises, #previousworkouts {
+    width: 550px;
+    height: 300px;
+    background-color: var(white);
+    color: var(--dark-text);
+    border: 1px solid var(--silver);
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    margin: 30px; 
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    opacity: .9;
+}
+
+#allpreviousworkouts, #recomexercises {
+    font-size: 22px;
+    font-weight: bolder;
+    text-align: left;
+}
+
+#previousworkouts {
+    width: 900px;
+    margin: 40px 0px 0px 150px;
+}
+
+#achievements-head {
+    width: 900px;
+}
+
+#bieFit-header {
+    font-weight: bolder;
+}
+
+#form {
+    padding-top: 1px;
+    font-size: 1rem;
+    font-weight: bolder;
     line-height: 1.1;
 }
 
-#form .checklist {
-    gap: 20px;
+#checklist {
+    margin-right: 20px;
+}
+
+#checklist-2 {
+    margin-left: 20px;
+}
+
+#checklist, #checklist-2 {
+    margin-top: 25px;
+    height: 398px;
+    font-size: 22px;
     justify-items: center;
     align-items: center;
     padding: 0px;
     text-align: left;
+    width: min-content;
+    white-space: nowrap;
+    display: inline-block;
+    letter-spacing: 1px;
 }
 
-#allpreviousworkouts, #recomexercises {
-    text-align: left;
+#checkbox-text {
+    padding: 0px 0px 3px 3px;
 }
 
 /* Screen */
@@ -195,5 +220,15 @@ ul li,ol li {
 @media screen and (max-width: 768px) {
     .main-container {
         flex-direction: column;
+    }
+    html, body {
+        background-image:float;
+    }
+    #previousworkouts {
+        width: 550px;
+        margin-left: 30px;
+    }
+    #achievements-head {
+        width: 550px;
     }
 }
