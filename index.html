@@ -27,7 +27,7 @@
           <p id="checkbox-text"><input type="checkbox" id="legs" name="workout" value="Legs"><label for="legs">Legs</label><br></p>
           <p id="checkbox-text"><input type="checkbox" id="core" name="workout" value="Core"><label for="core">Core</label><br></p>
         </div>
-        <input type="submit" id="biefit" value="bieFit"></input>
+        <input type="submit"data-bs-toggle="modal" data-bs-target="#bieFit-modal" id="biefit" value="bieFit"></input>
       </form>
 
     </section>
@@ -37,7 +37,7 @@
       <ol id="recomexercises">
         <!--The recommended exercises will go here-->
       </ol>
-      <input type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="complete" value="Complete"></input>
+      <input type="submit" data-bs-toggle="modal" data-bs-target="#complete-modal" id="complete" value="Complete"></input>
     </section>
   </div>
 
@@ -49,16 +49,34 @@
     <input type="submit" id="clearworkouts" value="Clear History"></input>
   </section>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- Modals -->
+<div class="modal fade" id="bieFit-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Great Picks!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Your Exercises Have Been Generated<br>
+        Click on the Exercise for a Demo
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="complete-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Congratulations!</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Your Workout Has Been Stored in The Achievements Section!
+        Your Workout Has Been Stored in the Achievements Section!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

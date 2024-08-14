@@ -1,12 +1,11 @@
 :root {
-    --ash-gray: #BFC3BA;
     --silver: #A9ACA9;
-    --light-blue: #0e2839;
     --dark-blue: #0e1b29;
     --dark-text: #070707;
     --light-text: #FFFFF2;
     --black: #000;
-    --background: #77298a;
+    --white: #ffff;
+    --nautical: #6086a0;
 }
 
 /* Base Styles */
@@ -16,6 +15,8 @@ html, body {
     background-image: url(../images/running.girl.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    scrollbar-color: var(--dark-blue) var(--white);
+    scrollbar-width: thin;
 }
 
 p {
@@ -25,6 +26,10 @@ p {
 a {
     color: var(--dark-blue);
     text-decoration: none;
+}
+
+a:hover {
+    color: var(--nautical);
 }
 
 /* Checkbox Styling */
@@ -41,6 +46,7 @@ input[type="checkbox"] {
     transform: translateY(.25em);
     flex-direction: row;
     flex: 0 0 100%;
+    accent-color: var(--nautical);
 }
 
 input[type="submit"] {
@@ -51,7 +57,7 @@ input[type="submit"] {
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--dark-blue);
-    color: white;
+    color: var(--white);
     font-weight: bold;
     border: none;
     border-radius: 4px;
@@ -115,10 +121,25 @@ ul li,ol li {
 
 .footer {
     color: var(--dark-text);
-    text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
     margin-right: 45px;
+    margin-bottom: 10px;
     font-weight: bolder;
-    font-weight: 600;
+    font-weight: 750;
+}
+
+.btn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-weight: bold;
+    border: none;
+}
+
+.btn:hover {
+    background-color: var(--silver);
+    color: var(--dark-text);
 }
 
 /* IDs */
@@ -149,7 +170,7 @@ ul li,ol li {
 #workouts, #exercises, #previousworkouts {
     width: 550px;
     height: 300px;
-    background-color: var(white);
+    background-color: var(--white);
     color: var(--dark-text);
     border: 1px solid var(--silver);
     border-radius: 8px;
@@ -165,15 +186,38 @@ ul li,ol li {
     opacity: .9;
 }
 
+#workouts:hover, #exercises:hover, #previousworkouts:hover {
+    opacity: .95;
+    box-shadow: 0px 0px 25px 7px var(--nautical);
+}
+
 #allpreviousworkouts, #recomexercises {
     font-size: 22px;
     font-weight: bolder;
     text-align: left;
+    padding-left: 3rem;
+}
+
+#recomexercises {
+    overflow-y: scroll;
+    scrollbar-color: var(--dark-blue) var(--white);
+    scrollbar-width: thin;
+    width: 500px;
+    margin-bottom: 50px;
+    padding-left: 4rem;
 }
 
 #previousworkouts {
     width: 900px;
     margin: 40px 0px 0px 150px;
+}
+
+#allpreviousworkouts {
+    margin-bottom: 50px;
+    padding-right: 90px;
+    overflow-y: scroll;
+    scrollbar-color: var(--dark-blue) var(--white);
+    scrollbar-width: thin;
 }
 
 #achievements-head {
@@ -219,12 +263,9 @@ ul li,ol li {
 
 /* Screen */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1075px) {
     .main-container {
         flex-direction: column;
-    }
-    html, body {
-        background-image:float;
     }
     #previousworkouts {
         width: 550px;
@@ -232,5 +273,8 @@ ul li,ol li {
     }
     #achievements-head {
         width: 550px;
+    }
+    html,body {
+        background-position: left left;
     }
 }
