@@ -28,6 +28,7 @@ Once the "Complete" button is clicked, a modal pops up with a congratulatory mes
 HTML
 CSS/Bootstrap framework
 JavaScript
+Git
 
 
 ## Credits
@@ -55,6 +56,8 @@ Please refer to the license in the repository.
 
 ## Link to the application
 
---Link goes here
+https://coopdouce.github.io/NewbieFit-PJ1/
+
+
 
 
