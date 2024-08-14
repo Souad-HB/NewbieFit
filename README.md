@@ -19,9 +19,7 @@ Once the user has finished working out, they can click on the "Complete" button.
 #### 3. Achievements
 Once the "Complete" button is clicked, a modal pops up with a congratulatory message and a celebratory confetti effect is displayed on the screen. Finally, the previously submitted workouts get to be stored under this section along with the date. That way the user can track what they did on which date. This data get to be displayed on the screen until the user chooses to remove it by clicking the "Clear History" button. 
 
-```md
-![alt text](./assets/images/NewbieFit_layout.png)
-```
+![alt text](assets/images/NewbieFit_layout.png)
 
 ## Technologies Used
 
