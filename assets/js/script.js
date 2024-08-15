@@ -14,6 +14,8 @@ let checkedWorkouts = [];
 let submittedWorkouts;
 let storedWorkouts;
 let completedWorkouts;
+biefit.disabled = true;
+complete.disabled = true;
 
 // Declare the workoutsArray that holds each workout along with its exercises
 const workoutsArray = [
@@ -108,6 +110,7 @@ complete.addEventListener('click', function (event) {
         requestAnimationFrame(triggerConfetti);
     }
     complete.disabled = true;
+    biefit.disabled = true;
     clearSubmittedWorkouts();
 });
 
@@ -148,6 +151,12 @@ function checkHandler(event) {
             checkedWorkouts.splice(index, 1);
         }
         console.log(checkedWorkouts);
+    }
+    if (checkedWorkouts && checkedWorkouts.length > 0) {
+        biefit.disabled = false;
+    }
+    else {
+        biefit.disabled = true;
     }
 }
 
