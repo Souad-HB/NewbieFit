@@ -9,7 +9,7 @@
 }
 
 /* Base Styles */
-html, body {
+body {
     margin: 0;
     padding: 0;
     background-image: url(../images/running.girl.jpg);
@@ -202,26 +202,26 @@ ul li,ol li {
     overflow-y: scroll;
     scrollbar-color: var(--dark-blue) var(--white);
     scrollbar-width: thin;
-    width: 500px;
+    width: 100%;
     margin-bottom: 50px;
     padding-left: 4rem;
 }
 
 #previousworkouts {
-    width: 900px;
-    margin: 40px 0px 0px 150px;
+    width: 960px;
 }
 
 #allpreviousworkouts {
     margin-bottom: 50px;
-    padding-right: 90px;
+    padding-right: 5px;
     overflow-y: scroll;
     scrollbar-color: var(--dark-blue) var(--white);
     scrollbar-width: thin;
+    width: 100%;
 }
 
 #achievements-head {
-    width: 900px;
+    width: 960px;
 }
 
 #bieFit-header {
@@ -264,8 +264,8 @@ ul li,ol li {
 /* Screen */
 
 @media screen and (max-width: 1075px) {
-    .main-container {
-        flex-direction: column;
+    body {
+        background-position: bottom;
     }
     #previousworkouts {
         width: 550px;
@@ -274,7 +274,59 @@ ul li,ol li {
     #achievements-head {
         width: 550px;
     }
-    html,body {
-        background-position: left left;
+
+    footer {
+        display: none;
     }
 }
+
+@media screen and (max-width: 768px) {
+    body {
+        background-position: right;
+    }
+    .card {
+        width: 90%;
+        padding: 10px;
+    }
+    #previousworkouts, #achievements-head {
+        width: 550px;
+        box-sizing: border-box;
+    }
+    
+    #main-header {
+        margin: 0 auto; 
+        width: 100%; 
+        justify-content: center;
+    }
+    #header-title {
+        font-size: 60px;
+        margin: 0 auto;
+    }
+    .section-head, #achievements-head {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .modal-sm {
+        width: 300px;
+        max-width: 100%;
+        margin: auto;
+        padding: 10px;
+    }
+    }
+    ul, li {
+        font-size: .9em;
+    }
+
+    #checklist, #checklist-2 {
+        font-size: 19px;
+    }
+    #previousworkouts li {
+        padding-right: 0;
+    }
+    
+@media screen and (max-width: 610px) {
+    #previousworkouts {
+            width: 85%;
+        }
+}  
