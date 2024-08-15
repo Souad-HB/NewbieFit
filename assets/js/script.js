@@ -1,4 +1,4 @@
-// Access the DOM elements and define variables
+// Access the DOM elements and declare variables
 const form = document.querySelector('#form');
 const checkboxes = document.querySelectorAll('input[name="workout"]');
 const biefit = document.querySelector('#biefit');
@@ -15,7 +15,7 @@ let submittedWorkouts;
 let storedWorkouts;
 let completedWorkouts;
 
-// Make the workoutsArray that holds each workout along with its exercises
+// Declare the workoutsArray that holds each workout along with its exercises
 const workoutsArray = [
     {
         workoutCategory: "Chest",

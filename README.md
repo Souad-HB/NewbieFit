@@ -12,21 +12,18 @@ By using this application, newbies to the fitness world will no longer feel relu
 
 When the webpage is loaded, NewbieFit is structured into three sections:
 #### 1. Select Your Workout
-It is Where the user gets to select their desired workout(s) for the day. There are no restrictions for how many they should select. Once that is decided, they can click on the "bieFit" button.
+It is Where the user gets to select their desired workout(s) for the day. There are no restrictions for how many they should select. Once that is decided, they can click on the "bieFit" button. 
 #### 2. Recommended Exercises
-Once the "bieFit" button is clicked, a variety of exercises related to the checked body muscles gets generated. Each exercise is a hyperlink to a demo making it easier and more intuitive to the user. 
+Once the "bieFit" button is clicked, a pop-up comes up letting the user know that each generated exercise is a link to a demo and a variety of exercises related to the checked body muscles gets generated.
 Once the user has finished working out, they can click on the "Complete" button. 
 #### 3. Achievements
 Once the "Complete" button is clicked, a modal pops up with a congratulatory message and a celebratory confetti effect is displayed on the screen. Finally, the previously submitted workouts get to be stored under this section along with the date. That way the user can track what they did on which date. This data get to be displayed on the screen until the user chooses to remove it by clicking the "Clear History" button. 
 
-![alt text](assets/images/NewbieFit_layout.png)
+![alt text](assets/images/NewbieFit.png)
 
 ## Technologies Used
 
-HTML
-CSS/Bootstrap framework
-JavaScript
-Git
+HTML, CSS/Bootstrap framework, JavaScript and Git.
 
 
 ## Credits
