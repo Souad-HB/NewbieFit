@@ -26,11 +26,12 @@ Once the "Complete" button is clicked, a modal pops up with a congratulatory mes
 HTML, CSS/Bootstrap framework, JavaScript and Git.
 
 
-## Credits
+## Collaborator:
 
-Collaborator:
-Souad Hassen-Bouzouita. 
-The following link is to her Github account: https://github.com/Souad-HB
+**Souad Hassen-Bouzouita** : [Github](https://github.com/Souad-HB)
+
+
+## Credits
 
 The following website was used for the demo links: https://weighttraining.guide/
 
@@ -51,7 +52,7 @@ Please refer to the license in the repository.
 
 ## Link to the application
 
-https://coopdouce.github.io/NewbieFit-PJ1/
+https://souad-hb.github.io/NewbieFit/
 
 
 
